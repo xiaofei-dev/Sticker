@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="作者"
+        android:title="关于">
+
+        <Preference
+            android:key="version"
+            android:summary="1.0.0 不稳定开发版本"
+            android:title="萌萌哒小表情" />
+
+        <Preference
+            android:key="designer"
+            android:summary="pandecheng"
+            android:title="设计" />
+
+        <Preference
+            android:key="developer"
+            android:summary="KallyDev"
+            android:title="开发" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="设置">
+
+        <Preference
+            android:summary=""
+            android:title="长按默认发送">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="开源">
+
+        <Preference
+            android:key="github"
+            android:summary="https://github.com/kittendev/Sticker"
+            android:title="Github" />
+
+        <Preference
+            android:key="nanoiconpack"
+            android:summary="https://github.com/by-syk/NanoIconPack"
+            android:title="Sticker参考了NanoIconPack"/>
+
+        <Preference
+            android:key="source"
+            android:title="开源协议" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="关注">
+
+        <Preference
+            android:key="stickerGroup"
+            android:summary="萌萌哒小表情官方交流群"
+            android:title="萌萌哒小表情" />
+
+        <Preference
+            android:key="geekGroup"
+            android:summary="Android开发者、玩机爱好者交流群"
+            android:title="Android Geek" />
+
+        <Preference
+            android:key="kittenGroup"
+            android:summary="开发者KallyDev的个人兴趣圈子群"
+            android:title="Kitten Developer" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="捐赠">
+
+        <Preference
+            android:key="donate"
+            android:summary="单笔超过10元的捐赠款我们会抽取其中30%捐赠到支付宝的爱心捐款中"
+            android:title="支持我们的开发">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
