@@ -17,7 +17,7 @@
 
         <Preference
             android:key="developer"
-            android:summary="KallyDev"
+            android:summary="KallyDev、xiaofei_dev"
             android:title="开发" />
 
     </PreferenceCategory>

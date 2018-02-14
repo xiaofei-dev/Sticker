@@ -18,7 +18,6 @@ import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-
 import com.kittendev.sticker.R
 import com.kittendev.sticker.model.StickerPackageModel
 import kotlinx.android.synthetic.main.item_sticker.view.*
@@ -41,16 +40,19 @@ class StickerRecyclerViewAdapter(private val context: Context, private val stick
                         .error(R.mipmap.ic_launcher)
                         .priority(Priority.HIGH))
                 ?.into(view.view_preview_imageView)
-        builder.show()
-        view.view_preview_wx.setOnClickListener(View.OnClickListener {
+        val dialog = builder.show()
+        view.view_preview_quit.setOnClickListener {
+            dialog.cancel()
+        }
+        view.view_preview_wx.setOnClickListener {
             sendWX(v?.tag as Int)
-        })
-        view.view_preview_qq.setOnClickListener(View.OnClickListener {
+        }
+        view.view_preview_qq.setOnClickListener {
             sendQQ(v?.tag as Int)
-        })
-        view.view_preview_tim.setOnClickListener(View.OnClickListener {
+        }
+        view.view_preview_tim.setOnClickListener {
             sendTIM(v?.tag as Int)
-        })
+        }
     }
 
     fun sendQT(position: Int) {

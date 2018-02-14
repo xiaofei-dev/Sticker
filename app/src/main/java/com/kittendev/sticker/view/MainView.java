@@ -10,6 +10,6 @@ public interface MainView {
 
     void onStickerLoading();
 
-    void onStickerLoaded(StickerPackageManagerModel stickerPackageManagerModel);
+    void onStickerLoadingComplete(StickerPackageManagerModel stickerPackageManagerModel);
 
 }
