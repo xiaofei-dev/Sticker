@@ -15,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.telephony.TelephonyManager
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Toast
@@ -44,11 +43,19 @@ class MainActivity : AppCompatActivity(), MainView, NavigationView.OnNavigationI
         setContentView(R.layout.activity_main)
         val actionBarDrawerToggle = ActionBarDrawerToggle(this, main_drawerLayout, main_toolbar, 0, 0)
         setSupportActionBar(main_toolbar)
+
+        /*val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }*/
         main_drawerLayout.setDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         main_navigationView.setNavigationItemSelectedListener(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE), 321)
+            ActivityCompat.requestPermissions(this,
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                    Manifest.permission.READ_PHONE_STATE),
+                            321)
         }
     }
 
@@ -84,7 +91,7 @@ class MainActivity : AppCompatActivity(), MainView, NavigationView.OnNavigationI
     }
 
     @SuppressLint("MissingPermission", "HardwareIds")
-    override fun onStickerLoaded(stickerPackageManagerModel: StickerPackageManagerModel?) {
+    override fun onStickerLoadingComplete(stickerPackageManagerModel: StickerPackageManagerModel?) {
         isLoading = false
         loadAlertDialog?.dismiss()
         if (stickerPackageManagerModel?.stickerPackageNumber != 0) {
@@ -108,11 +115,22 @@ class MainActivity : AppCompatActivity(), MainView, NavigationView.OnNavigationI
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    //你覆写这个方法是想干嘛？
+    /*override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (KeyEvent.KEYCODE_BACK == keyCode) {
             return this.isLoading!!
         }
         return super.onKeyDown(keyCode, event)
+    }*/
+
+    //点击左上角图标打开抽屉
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId){
+            android.R.id.home ->{
+                main_drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

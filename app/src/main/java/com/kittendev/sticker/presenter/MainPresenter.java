@@ -34,7 +34,7 @@ public class MainPresenter {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 0) {
-                    mainView.onStickerLoaded(stickerPackageManagerModel);
+                    mainView.onStickerLoadingComplete(stickerPackageManagerModel);
                 } else if (msg.what == 1) {
                     mainView.onStickerImportCompleted();
                     loadSticker();
