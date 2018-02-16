@@ -6,4 +6,6 @@ public interface ImportView {
 
     void onStickerImportCompleted();
 
+    void onStickerImportFailed();
+
 }

@@ -2,6 +2,7 @@ package com.kittendev.sticker.page
 
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 
@@ -15,9 +16,18 @@ class StickerPage(private val context: Context, private val stickerPackageModel:
     val view: View = LayoutInflater.from(context).inflate(R.layout.page_sticker, null, false)
 
     init {
-        val stickerRecyclerViewAdapter = StickerRecyclerViewAdapter(context, stickerPackageModel)
-        view.page_sticker_recyclerView.layoutManager = GridLayoutManager(context, 5)
+        val gridNumAndWidth = calculateGridNumAndWidth()
+        val stickerRecyclerViewAdapter = StickerRecyclerViewAdapter(context, stickerPackageModel, gridNumAndWidth[1])
+        view.page_sticker_recyclerView.layoutManager = GridLayoutManager(context, gridNumAndWidth[0])
         view.page_sticker_recyclerView.adapter = stickerRecyclerViewAdapter
+    }
+
+    private fun calculateGridNumAndWidth(): IntArray {
+        val displayMetrics: DisplayMetrics = context.resources.displayMetrics
+        val totalWidth = displayMetrics.widthPixels
+        val minGridSize = context.resources.getDimensionPixelSize(R.dimen.sticker_item_size)
+        val num = totalWidth / minGridSize
+        return intArrayOf(num, totalWidth / num)
     }
 
 }

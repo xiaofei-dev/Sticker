@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:gravity="center"
-    android:background="@drawable/anim_water">
+    android:id="@+id/item_sticker_linearLayout"
+    android:layout_width="@dimen/sticker_item_size"
+    android:layout_height="@dimen/sticker_item_size"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/item_sticker_imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/sticker_sticker_size"
+        android:layout_height="@dimen/sticker_sticker_size"
         android:scaleType="fitCenter" />
 
 </LinearLayout>

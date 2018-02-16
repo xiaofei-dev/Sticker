@@ -22,22 +22,28 @@ public class ImportPresenter {
             public void handleMessage(Message msg) {
                 if (msg.what == 0) {
                     importView.onStickerImportCompleted();
+                } else if (msg.what == 1) {
+                    importView.onStickerImportFailed();
                 }
             }
         };
     }
 
-    public void importAssetsSticker(final String file) {
-        importView.onStickerImporting();
-        new Thread() {
-            @Override
-            public void run() {
-                if (new File(file).exists()) {
-                    ZipUtil.Ectract(file, StickerApplication.STICKER_PATH + "/");
+    public void importAssetsSticker(final String path) {
+        final File file = new File(path);
+        if (file.exists()) {
+            importView.onStickerImporting();
+            new Thread() {
+                @Override
+                public void run() {
+                    ZipUtil.Ectract(file.getAbsolutePath(), StickerApplication.STICKER_PATH + "/");
+                    handler.sendEmptyMessage(0);
                 }
-                handler.sendEmptyMessage(1);
-            }
-        }.start();
+            }.start();
+        } else {
+            handler.sendEmptyMessage(1);
+        }
+
     }
 
 }

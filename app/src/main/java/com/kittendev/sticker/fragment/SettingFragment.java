@@ -36,7 +36,8 @@ public class SettingFragment extends PreferenceFragmentCompat implements Prefere
         designer.setOnPreferenceClickListener(this);
         developer.setOnPreferenceClickListener(this);
         github.setOnPreferenceClickListener(this);
-        source.setOnPreferenceClickListener(this);
+        // 在之后的版本中修复这里
+        // source.setOnPreferenceClickListener(this);
         stickerGroup.setOnPreferenceClickListener(this);
         geekGroup.setOnPreferenceClickListener(this);
         kittenGroup.setOnPreferenceClickListener(this);
