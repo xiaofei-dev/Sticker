@@ -1,10 +1,12 @@
 package com.kittendev.sticker.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import com.kittendev.sticker.R
 import com.kittendev.sticker.presenter.ImportPresenter
 import com.kittendev.sticker.view.ImportView
@@ -25,6 +27,7 @@ class ImportActivity : AppCompatActivity(), ImportView, View.OnClickListener {
         import_button.setOnClickListener(this)
     }
 
+    @SuppressLint("InflateParams")
     override fun onStickerImporting() {
         isImporting = true
         importAlertDialog = AlertDialog.Builder(this)
@@ -36,6 +39,10 @@ class ImportActivity : AppCompatActivity(), ImportView, View.OnClickListener {
     override fun onStickerImportCompleted() {
         isImporting = false
         importAlertDialog?.dismiss()
+    }
+
+    override fun onStickerImportFailed() {
+        Toast.makeText(this, "ImportFailed", Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(v: View?) {

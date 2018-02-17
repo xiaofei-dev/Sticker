@@ -4,9 +4,13 @@ import com.kittendev.sticker.model.StickerPackageManagerModel;
 
 public interface MainView {
 
-    void onStickerImporting();
+    void onStickerDownloadReady();
 
-    void onStickerImportCompleted();
+    void onStickerDownloading(int progress);
+
+    void onStickerDownloadCompleted();
+
+    void onStickerDownloadFailed();
 
     void onStickerLoading();
 
