@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity(), MainView, NavigationView.OnNavigationI
     private var isDownloading: Boolean? = null
     private var downloadDialog: AlertDialog? = null
 
+    //上一次按下 back key 的时间
+    private var mPressedTime: Long = 0
+
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,17 @@ class MainActivity : AppCompatActivity(), MainView, NavigationView.OnNavigationI
             // 如果Android版本低于6.0
             mainPresenter = MainPresenter(this, this)
         }
+    }
+
+    override fun onBackPressed() {
+        val mNowTime = System.currentTimeMillis()//记录本次按键时刻
+        if (mNowTime - mPressedTime > 1000) {//比较两次按键时间差
+            Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show()
+            mPressedTime = mNowTime
+        } else {
+            super.onBackPressed()
+        }
+
     }
 
     override fun onStickerDownloadReady() {

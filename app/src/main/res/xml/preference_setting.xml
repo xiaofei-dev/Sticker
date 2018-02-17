@@ -7,7 +7,7 @@
 
         <Preference
             android:key="version"
-            android:summary="1.0.0 不稳定开发版本"
+            android:summary="1.0.1 不稳定开发版本"
             android:title="萌萌哒小表情" />
 
         <Preference

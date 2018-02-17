@@ -32,9 +32,9 @@ public class MainPresenter {
     public MainPresenter(final MainView mainView, Context context) {
         this.mainView = mainView;
         // 如果Sticker文件夹存在
-        if (new File(StickerApplication.STICKER_PATH).exists()) {
+        if (new File(StickerApplication.Companion.getSTICKER_PATH()).exists()) {
             // 加载表情包
-            File nomediaFile = new File(StickerApplication.STICKER_PATH + "/.nomedia");
+            File nomediaFile = new File(StickerApplication.Companion.getSTICKER_PATH() + "/.nomedia");
             // 如果.nomedia文件不存在，创建文件
             if (!nomediaFile.exists()) {
                 try {
@@ -49,8 +49,8 @@ public class MainPresenter {
             loadSticker();
         } else {
             // 如果Sticker文件夹不存在，创建Sticker文件夹
-            if (new File(StickerApplication.STICKER_PATH).mkdir()) {
-                File nomediaFile = new File(StickerApplication.STICKER_PATH + "/.nomedia");
+            if (new File(StickerApplication.Companion.getSTICKER_PATH()).mkdir()) {
+                File nomediaFile = new File(StickerApplication.Companion.getSTICKER_PATH() + "/.nomedia");
                 // 如果.nomedia文件不存在，创建文件
                 if (!nomediaFile.exists()) {
                     try {
@@ -95,7 +95,7 @@ public class MainPresenter {
         new Thread() {
             @Override
             public void run() {
-                Request request = new Request.Builder().url(StickerApplication.SERVER_FILE).build();
+                Request request = new Request.Builder().url(StickerApplication.Companion.getSERVER_FILE()).build();
                 OkHttpClient okHttpClient = new OkHttpClient();
                 okHttpClient.newCall(request).enqueue(new Callback() {
                     @Override
@@ -113,7 +113,7 @@ public class MainPresenter {
                             try {
                                 inputStream = response.body().byteStream();
                                 long size = response.body().contentLength();
-                                File file = new File(StickerApplication.STICKER_PATH, "Sticker.zip");
+                                File file = new File(StickerApplication.Companion.getSTICKER_PATH(), "Sticker.zip");
                                 fileOutputStream = new FileOutputStream(file);
                                 long sum = 0;
                                 while ((len = inputStream.read(bytes)) != -1) {
@@ -133,8 +133,8 @@ public class MainPresenter {
                                     fileOutputStream.close();
                                 }
                             }
-                            if (new File(StickerApplication.STICKER_PATH + "/Sticker.zip").exists()) {
-                                ZipUtil.Ectract(StickerApplication.STICKER_PATH + "/Sticker.zip", StickerApplication.STICKER_PATH + "/");
+                            if (new File(StickerApplication.Companion.getSTICKER_PATH() + "/Sticker.zip").exists()) {
+                                ZipUtil.Ectract(StickerApplication.Companion.getSTICKER_PATH() + "/Sticker.zip", StickerApplication.Companion.getSTICKER_PATH() + "/");
                                 handler.sendEmptyMessage(1);
                             }
                         } else {

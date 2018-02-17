@@ -36,7 +36,7 @@ public class ImportPresenter {
             new Thread() {
                 @Override
                 public void run() {
-                    ZipUtil.Ectract(file.getAbsolutePath(), StickerApplication.STICKER_PATH + "/");
+                    ZipUtil.Ectract(file.getAbsolutePath(), StickerApplication.Companion.getSTICKER_PATH() + "/");
                     handler.sendEmptyMessage(0);
                 }
             }.start();

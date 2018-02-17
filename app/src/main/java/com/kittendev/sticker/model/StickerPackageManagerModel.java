@@ -11,7 +11,7 @@ public class StickerPackageManagerModel extends File {
     private List<StickerPackageModel> stickerPackageModelList = new ArrayList<>();
 
     public StickerPackageManagerModel() {
-        super(StickerApplication.STICKER_PATH);
+        super(StickerApplication.Companion.getSTICKER_PATH());
         File[] files = listFiles();
         for (File file : files) {
             if (file.isDirectory()) {
